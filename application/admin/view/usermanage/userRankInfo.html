@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CAUC二手书后台</title>
+    <!--引入BS.JS-->{include file="common/UseBsJs"}
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/common/nav.css">
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/usermanage/userRankManage.css">
+</head>
+
+<body>
+
+    {include file="common/nav"}
+
+    <div class="body">
+        <div class="content">
+            <h3 class="text-center">用户权限管理</h3>
+            <div class="user-rank-manage">
+                <div class="nav-user-rank">
+                    <ul class="nav navbar-nav">
+                        <li><a class="btn btn-default" href="__MODULE_ADMIN__/Usermanage/userRankManage">查询用户信息和权限</a></li>
+                        <li><a class="btn btn-default" href="__MODULE_ADMIN__/Usermanage/managerManage">管理管理员</a></li>
+                    </ul>
+                </div>
+
+                <form action="__MODULE_ADMIN__/Usermanage/userRankInfo" method="POST">
+                    <div class="row">
+                        <label for="name">用户名:</label>
+                        <input required type="text" name="username" value="{$userInfo.userName}" placeholder="请输入用户名">
+                        <input class="btn btn-primary" type="submit" value="查询用户信息和权限">
+                    </div>
+                </form>
+
+                <div class="user-info">
+                    <p class="text-success">查询结果</p>
+                    <table class="table">
+                        <tr>
+                            <th>用户名</th>
+                            <td>{$userInfo.userName}</td>
+                        </tr>
+                        <tr>
+                            <th>姓名</th>
+                            <td>{$userInfo.name}</td>
+                        </tr>
+                        <tr>
+                            <th>学号</th>
+                            <td>{$userInfo.studentId}</td>
+                        </tr>
+                        <tr>
+                            <th>QQ</th>
+                            <td>{$userInfo.QQ}</td>
+                        </tr>
+                        <tr>
+                            <th>微信</th>
+                            <td>{$userInfo.weChat}</td>
+                        </tr>
+                        <tr>
+                            <th>权限</th>
+                            <td>{$userInfo.rank}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

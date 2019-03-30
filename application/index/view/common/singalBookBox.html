@@ -1,0 +1,11 @@
+<!-- 单本书 -->
+<div class="book">
+    <a class="text-center book-name" href="__MODULE_INDEX__/Textbooks/bookdetails?id={$vo.id}&userName={$vo.userName}">{$vo.bookname}</a>
+    <a href="__MODULE_INDEX__/Textbooks/bookdetails?id={$vo.id}&userName={$vo.userName}"><img class="book-image" src="__STATIC__/bookImages/{$vo.main_image}" alt=""></a>
+    <div class="details">
+        <div class="book-price text-center">
+            <span class="original-price">原价:￥{$vo.original_price}</span>
+            <span class="now-price"><span class="glyphicon glyphicon-shopping-cart"></span> 售价:￥{$vo.now_price}</span>
+        </div>
+    </div>
+</div>

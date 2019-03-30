@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CAUC二手书后台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.3,maximum-scale=2.0,user-#scalable=yes">
+    <!--引入BS.JS-->{include file="common/UseBsJs"}
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/common/nav.css">
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/bookmanage/bookAudit.css">
+</head>
+
+<body>
+
+    {include file="common/nav"}
+
+    <div class="body">
+        <div class="content">
+            <h3 class="text-center">书籍审核</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center">图片</th>
+                        <th class="text-center">书名</th>
+                        <th class="text-center">类型</th>
+                        <th class="text-center">成色</th>
+                        <th class="text-center">原价/售价</th>
+                        <th class="text-center">联系方式</th>
+                        <th class="text-center">编码</th>
+                        <th class="text-center">操作</th>
+                    </tr>
+                </thead>
+                {volist name="books" id="vo"}
+                <tr>
+                    <td rowspan="2" class="text-center"><img class="book-image" src="__STATIC__/bookImages/{$vo.main_image}" alt=""></td>
+                    <td class="text-center">{$vo.bookname}</td>
+                    <td class="text-center">{$vo.type}</td>
+                    <td class="text-center">{$vo.degree}</td>
+                    <td class="text-center">{$vo.original_price}/{$vo.now_price}</td>
+                    <td class="text-center">微信：{$vo.sellerWeChat}/QQ：{$vo.sellerQQ}</td>
+                    <td class="text-center">{$vo.userName}-{$vo.id}</td>
+                    <td class="text-center">
+                        <a href="__MODULE_ADMIN__/Bookmanage/passAudit/?id={$vo.id}&userName={$vo.userName}" class="btn btn-primary">通过</a>
+                        <a href="__MODULE_ADMIN__/Bookmanage/deleteBook/?id={$vo.id}&userName={$vo.userName}" class="btn btn-primary">删除</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="text-left text-info">备注--{$vo.remarks}</td>
+                </tr>
+                {/volist}
+            </table>
+            <div style="width: 200px;height: 50px;margin-left: 460px;">{$page}</div>
+            <div style="text-align: right;">
+                共{$count}条数据，<span id="allpage"></span>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

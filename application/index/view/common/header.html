@@ -1,0 +1,42 @@
+<!-- 网站导航栏 -->
+<link rel="stylesheet" href="__COMMON__/css/header.css">
+<div class="header">
+    <ul class="nav-left">
+        <li><a href="__MODULE_INDEX__/Index/index" class="item ">首页</a></li>
+        <li><a href="__MODULE_INDEX__/Textbooks/index" class="item ">教科书区</a></li>
+        <li><a href="__MODULE_INDEX__/Extrabooks/index" class="item ">课外书区</a></li>
+        <li><a href="__MODULE_INDEX__/Cetbooks/index" class="item ">考研与教辅区</a></li>
+        <li><a href="__MODULE_INDEX__/Textbooks/salebook" class="item ">我要卖书</a></li>
+        <li>
+            <form method="POST" action="__MODULE_INDEX__/Index/searchBooks" class="search-box">
+                <input id="search-box" name="key" type="text" placeholder="输入书名搜索图书">
+                <button type="submit" class="btn btn-default">搜索</button>
+            </form>
+        </li>
+    </ul>
+    <div class="nav-right">
+        <a id="user-info" href="__MODULE_INDEX__/User/userDetails"></a>
+        <a id="login" class="btn btn-primary login">登录</a>
+    </div>
+</div>
+</div>
+
+<script>
+    $(function() {
+        var isLogin = "{$Request.session.isLogin}";
+        var userName = "{$Request.session.userName}";
+
+        //如果登录成功
+        if (isLogin) {
+            $("#login").hide();
+            $("#logout").show();
+            $("#user-info").text(userName + ",欢迎您!");
+            $("#user-info").show();
+        }
+
+    })
+</script>
+
+
+<!-- 登录面板 -->
+{include file="common/login"}

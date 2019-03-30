@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CAUC二手书后台</title>
+    <!--引入BS.JS-->{include file="common/UseBsJs"}
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/common/nav.css">
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/usermanage/userRankManage.css">
+</head>
+
+<body>
+
+    {include file="common/nav"}
+
+    <div class="body">
+        <div class="content">
+            <h3 class="text-center">用户封号</h3>
+            <div class="user-rank-manage">
+                <form action="__MODULE_ADMIN__/Usermanage/userProhibitionSure" method="POST">
+                    <div class="row">
+                        <label for="name">用户名:</label>
+                        <input required type="text" name="username" placeholder="请输入用户名">
+                        <input class="btn btn-primary" type="submit" value="封号">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

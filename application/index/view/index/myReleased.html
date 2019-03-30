@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--引入BS.JS-->{include file="common/UseBsJs"}
+    <link rel="stylesheet" href="__COMMON__/css/body.css">
+    <title>CAUC-二手书交易平台</title>
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/bookmanage/bookAudit.css">
+</head>
+
+<body>
+    <!--导航栏-->
+    {include file="common/header"}
+    <div class="body" style="min-height:800px;">
+        <div class="content">
+            <h3 class="text-center">我发布的</h3>
+            <hr>
+            <p style="color:rgb(207, 86, 16);padding:0px 30px;font-size:16px;">提醒：如果书籍已经售出后，为了避免您被打扰和平台的用户体验感，请麻烦您一定及时清理……若经过核实您的书籍已售出而未清理，则会进行封号处理</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center">图片</th>
+                        <th class="text-center">id</th>
+                        <th class="text-center">状态</th>
+                        <th class="text-center">书名</th>
+                        <th class="text-center">类型</th>
+                        <th class="text-center">成色</th>
+                        <th class="text-center">原价/售价</th>
+                        <th class="text-center">操作</th>
+                    </tr>
+                </thead>
+                {volist name="books" id="vo"}
+                <tr>
+                    <td rowspan="2" class="text-center"><img class="book-image" src="__STATIC__/bookImages/{$vo.main_image}" alt=""></td>
+                    <td class="text-center">{$vo.id}</td>
+                    <td class="text-center" style="color:rgb(22, 187, 16);font-weight:400;">{$vo.state}</td>
+                    <td class="text-center">{$vo.bookname}</td>
+                    <td class="text-center">{$vo.type}</td>
+                    <td class="text-center">{$vo.degree}</td>
+                    <td class="text-center">{$vo.original_price}/{$vo.now_price}</td>
+                    <td class="text-center">
+                        <a href="#" data="{$vo.id}" class="bookDel btn btn-primary">删除</a>
+                        <a href="__MODULE_INDEX__/Index/changeBookInfo?id={$vo.id}" class="btn btn-primary">修改</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="9" class="text-left text-info">
+                        <p style="width:100%;text-overflow:ellipsis; white-space:nowrap;overflow: hidden;">
+                            {if condition="$vo.state eq '审核不通过'"}
+                            <span style="color:red">审核不通过理由:{$vo.unpassReason}<span style="margin-left:3em"></span></span> {/if} 详情--{$vo.remarks}
+                        </p>
+                    </td>
+                </tr>
+                {/volist}
+            </table>
+            <center>
+                <div>{$page}</div>
+            </center>
+            <div style="text-align: right;margin-right:20px;">
+                共{$count}条数据，<span id="allpage"></span>
+            </div>
+
+        </div>
+    </div>
+
+    <!--footer-->
+    {include file="common/footer"}
+
+    <script>
+        $(function() {
+            //删除书
+            $(".bookDel").click(function() {
+                var result = window.confirm("确认删除该书？删除后不可恢复");
+                if (result) {
+                    window.location = "__MODULE_INDEX__/Index/deleteBook/?id=" + $(this).attr("data");
+                }
+            });
+        })
+    </script>
+
+</body>
+
+</html>

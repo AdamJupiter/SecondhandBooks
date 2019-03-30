@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.52,maximum-scale=2.0,user-#scalable=yes">
+    <!--引入BS.JS-->{include file="common/UseBsJs"}
+    <link rel="stylesheet" href="__COMMON__/css/body.css">
+    <link rel="stylesheet" href="__INDEX__/css/textbooks/index.css">
+
+    <title>CAUC-二手书交易平台</title>
+</head>
+
+<body>
+
+    <!--导航栏-->
+    {include file="common/header"}
+
+    <div class="body">
+        <div class="body-group">
+            <ul>
+                <li class="btn-group">
+                </li>
+                <li class="btn-group">
+                    <a href="__MODULE_INDEX__/Index/myReleased" class="btn">
+                        <span class="glyphicon glyphicon-check"></span> 我发布的
+                    </a>
+                </li>
+                <li class="btn-group">
+                    <a href="__MODULE_INDEX__/Textbooks/salebook" class="btn">
+                        <span class="glyphicon glyphicon-usd"></span> 我要卖书
+                    </a>
+                </li>
+            </ul>
+
+            <ul>
+                <p class="text-center">
+                    <span class="glyphicon glyphicon-th-list"></span> 选择学院
+                </p>
+                <a class="btn" style="font-size:18px;font-weight:bolder;" href="__MODULE_INDEX__/Textbooks/index">全部</a> {volist name="academy" id="vo"}
+                <a class="btn" style="font-size:18px;font-weight:bolder;" href="__MODULE_INDEX__/Textbooks/sortBookByAcademy?academy={$vo.name}">{$vo.name}</a> {/volist}
+            </ul>
+            <hr>
+        </div>
+
+        <div style="overflow:hidden;width:100%;">
+            {volist name="books" id="vo"} {include file="common/singalBookBox"} {/volist}
+        </div>
+
+        <center>
+            <div>{$page}</div>
+        </center>
+        <div style="text-align: right;">
+            共{$count}条数据，<span id="allpage"></span>
+        </div>
+
+    </div>
+
+
+
+    <!--footer-->
+    {include file="common/footer"}
+
+    <script>
+        $(
+            function() {
+                $(".header .nav-left li a").eq(1).addClass("a-active");
+            }
+        )
+    </script>
+
+</body>
+
+</html>

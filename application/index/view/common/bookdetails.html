@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.52,maximum-scale=2.0,user-#scalable=yes">
+    <!--引入BS.JS-->{include file="common/UseBsJs"}
+    <link rel="stylesheet" href="__COMMON__/css/body.css">
+    <link rel="stylesheet" href="__COMMON__/css/bookdetails.css">
+    <title>CAUC-二手书交易平台</title>
+</head>
+
+<body>
+    <!--导航栏-->
+    {include file="common/header"}
+
+    <div class="bookdetails">
+        <div class="title">
+            <h2 class="text-center text-primary">The Detailes Of Book</h2>
+            <hr>
+        </div>
+        <div class="book-image">
+            <img src="__STATIC__/bookImages/{$bookDetails.main_image}" alt="">
+        </div>
+
+        <div class="section">
+            <p>编号：{$bookDetails.userName}-{$bookDetails.id}</p>
+            <p>书名：{$bookDetails.bookname}</p>
+            <p>原价：<del>￥{$bookDetails.original_price}</del></p>
+            <p>售价：<span style="color:#f40;">￥{$bookDetails.now_price}</span></p>
+            <p>类型：{$bookDetails.type}</p>
+            <p>成色：{$bookDetails.degree}</p>
+            <p>备注：{$bookDetails.remarks}</p>
+            <div class="action">
+                <a id="buy" href="#" class="btn btn-primary">我要购买</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 对话框 -->
+    {include file="common/dialogBox"}
+
+    <!--footer-->
+    {include file="common/footer"}

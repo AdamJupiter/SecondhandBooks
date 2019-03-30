@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--引入BS.JS-->{include file="common/UseBsJs"}
+    <link rel="stylesheet" href="__COMMON__/css/body.css">
+    <title>后台首页</title>
+</head>
+
+<body class="container">
+    <div class="body">
+        <link rel="stylesheet" href="__COMMON__/css/adminLogin.css">
+        <div class="login-box">
+            <h1 class="text-center text-primary">后台登录</h1>
+            <hr>
+            <form action="__MODULE_ADMIN__/Index/login" method="POST" class="form">
+                <div class="form-group">
+                    <label for="name" class="col-xs-2">用户名：</label>
+                    <div class="col-xs-10">
+                        <input required type="text" name="用户名" class="form-control" placeholder="请输入用户名">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-xs-2">密码：</label>
+                    <div class="col-xs-10">
+                        <input required type="password" name="密码" class="form-control" placeholder="请输入密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-4"></div>
+                    <input type="submit" class="btn btn-success" value="提交">
+                    <a href="__MODULE_INDEX__/Index/index" class="btn btn-primary">去前台</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

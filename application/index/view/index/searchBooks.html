@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.52,maximum-scale=2.0,user-#scalable=yes">
+    <!--引入BS.JS-->{include file="common/UseBsJs"}
+    <link rel="stylesheet" href="__COMMON__/css/body.css">
+    <link rel="stylesheet" href="__INDEX__/css/textbooks/index.css">
+
+    <title>CAUC-二手书交易平台</title>
+</head>
+
+<body>
+
+    <!--导航栏-->
+    {include file="common/header"}
+
+    <div class="body">
+        <h4 class="search-key text-center text-primary">搜索<span id="search-key" class="text-danger">{$key}</span>的结果为,<span class="text-info">共{$count}条记录</span></h4>
+        {volist name="books" id="vo"}
+        <div style="overflow:hidden;width:100%;">
+            {volist name="books" id="vo"} {include file="common/singalBookBox"} {/volist}
+        </div>
+    </div>
+    {/volist}
+    </div>
+
+    <!--footer-->
+    {include file="common/footer"}
+
+    <script>
+        $(function() {
+            $("input#search-box").val($("#search-key").text());
+        })
+    </script>
+
+</body>
+
+</html>

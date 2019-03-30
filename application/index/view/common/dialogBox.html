@@ -1,0 +1,44 @@
+<style>
+    .dialog-box {
+        padding: 50px;
+        width: 740px;
+        background-color: #ddd;
+        position: absolute;
+        margin: 0px auto;
+        top: 100px;
+        z-index: 2;
+        margin-left: 30px;
+        border-radius: 10px;
+    }
+    
+    .dialog-box img {
+        display: block;
+        width: 400px;
+        height: 500px;
+        margin: 0px auto;
+    }
+    
+    .dialog-box p {
+        font-size: 20px;
+    }
+</style>
+
+<div class="dialog-box">
+    <span id="close-dialog-box" style="font-size:30px;float:right;" class="glyphicon glyphicon-remove"></span>
+    <p class="text-info text-center">请将书的信息截图并将截图发给小Y，小Y将会为你处理</p>
+    <hr>
+    <img src="__STATIC__/common/images/小Y.jpg">
+</div>
+
+<script>
+    $(
+        function() {
+            $("#buy").click(function() {
+                $(".dialog-box").show();
+            })
+            $("#close-dialog-box").click(function() {
+                $(".dialog-box").hide();
+            })
+        }
+    )
+</script>

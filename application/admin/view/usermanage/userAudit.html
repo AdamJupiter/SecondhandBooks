@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CAUC二手书后台</title>
+    <!--引入BS.JS-->{include file="common/UseBsJs"}
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/common/nav.css">
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/index/manage.css">
+</head>
+
+<body>
+
+    {include file="common/nav"}
+
+    <div class="body">
+        <div class="content">
+            <h3 class="text-center">用户审核</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center">用户名</th>
+                        <th class="text-center">学号</th>
+                        <th class="text-center">姓名</th>
+                        <th class="text-center">QQ</th>
+                        <th class="text-center">微信</th>
+                        <th class="text-center">操作</th>
+                    </tr>
+                </thead>
+                {volist name="users" id="vo"}
+                <tr>
+                    <td class="text-center">{$vo.userName}</td>
+                    <td class="text-center">{$vo.studentId}</td>
+                    <td class="text-center">{$vo.name}</td>
+                    <td class="text-center">{$vo.QQ}</td>
+                    <td class="text-center">{$vo.weChat}</td>
+                    <td class="text-center">
+                        <a href="__MODULE_ADMIN__/Usermanage/passAudit/?tel={$vo.tel}" class="btn btn-primary">通过</a>
+                        <a href="__MODULE_ADMIN__/Usermanage/deleteUser/?tel={$vo.tel}" class="btn btn-primary">删除</a>
+                    </td>
+                </tr>
+                {/volist}
+            </table>
+            <div style="width: 200px;height: 50px;margin-left: 460px;">{$page}</div>
+            <div style="text-align: right;">
+                共{$count}条数据，<span id="allpage"></span>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

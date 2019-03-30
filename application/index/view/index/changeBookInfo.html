@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--引入BS.JS-->{include file="common/UseBsJs"}
+    <link rel="stylesheet" href="__COMMON__/css/body.css">
+    <link rel="stylesheet" href="__INDEX__/css/textbooks/salebook.css">
+    <link rel="stylesheet" href="__INDEX__/css/textbooks/bootstrap-fileinput.css">
+    <script src="__INDEX__/js/textbooks/bootstrap-fileinput.js"></script>
+
+    <title>CAUC-二手书交易平台</title>
+</head>
+
+<body>
+
+    <!--导航栏-->
+    {include file="common/header"}
+
+    <div class="body">
+        <form role="form" action="__MODULE_INDEX__/Index/updateBookInfo?id={$book.id}" method="POST" class="form-horizontal text-primary">
+            <h2 class="text-center text-primary">修改书籍信息</h3>
+                <hr>
+                <div class="form-group">
+                    <label for="name" class="col-xs-2">书名</label>
+                    <div class="col-xs-10">
+                        <input type="text" name="书名" value="{$book.bookname}" required class="form-control" placeholder="请输入书名">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-xs-2">新旧程度</label>
+                    <div class="col-xs-10">
+                        <input type="text" value="{$book.degree}" required name="新旧程度" class="form-control" placeholder="请输入书的新旧程度,例如85新">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-xs-2">原价</label>
+                    <div class="col-xs-10">
+                        <input type="text" value="{$book.original_price}" name="原价" class="form-control" placeholder="请输入书的原价,可以为空，整数">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-xs-2">售价</label>
+                    <div class="col-xs-10">
+                        <input type="text" value="{$book.now_price}" required name="售价" class="form-control" placeholder="请输入书的售价">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-xs-2">联系微信</label>
+                    <div class="col-xs-10">
+                        <input type="text" value="{$book.sellerWeChat}" required name="微信" class="form-control" placeholder="请输入联系人的微信">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-xs-2 text-left">类型</label>
+                    <div class="col-xs-10">
+                        <script>
+                            $(function() {
+                                var type = "{$book.type}";
+                                var academy = "{$book.academy}";
+                                $("#page-control").val(type);
+                                if ($("#page-control").val() == "教科书") {
+                                    $("#academy-control").val(academy);
+                                    $("#academy").show();
+                                }
+                            })
+                        </script>
+                        <select id="page-control" name="类型" class="form-control">
+                      <option>课外书</option>
+                      <option>教科书</option>
+                      <option>考研与教辅</option>
+                    </select>
+                    </div>
+                </div>
+                <div id="academy" class="form-group" style="display:none;">
+                    <label for="name" class="col-xs-2">所属学院</label>
+                    <div class="col-xs-10">
+                        <select name="所属学院" id="academy-control" class="form-control">
+                          {volist name="adcdemys" id="vo"} <option value="{$vo.name}">{$vo.name}</option>{/volist}
+                    </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-xs-2">图片</label>
+                    <img style="width:130px;height:160px; margin-left:20px" src="__STATIC__/bookImages/{$book.main_image}" alt="">
+                    <span style="color:rgb(211, 49, 35);;vertical-align: cneter;">tips:涉及图片修改的请直接删除然后重新发布</span>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-xs-2">备注</label>
+                    <div class="col-xs-10">
+                        <textarea name="备注" class="form-control" rows="5">{$book.remarks}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-5"></div>
+                    <input type="submit" class="btn btn-success" value="提交">
+                    <a href="__MODULE_INDEX__/Index/myReleased" class="btn btn-danger">取消修改</a>
+                </div>
+    </div>
+    </form>
+    </div>
+
+    <script>
+        $(function() {
+            $("#page-control").change(function() {
+                if ($("#page-control").val() != "教科书") {
+                    $("#academy").hide();
+                } else {
+                    $("#academy").show();
+                }
+            })
+
+        })
+    </script>
+
+    <!--footer-->
+    {include file="common/footer"}
+
+</body>
+
+</html>

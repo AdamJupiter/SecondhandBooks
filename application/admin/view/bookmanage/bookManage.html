@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CAUC二手书后台</title>
+    <!--引入BS.JS-->{include file="common/UseBsJs"}
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/common/nav.css">
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/bookmanage/bookAudit.css">
+</head>
+
+<body>
+
+    {include file="common/nav"}
+
+    <div class="body">
+        <div class="content">
+            <h3 class="text-center">书籍管理</h3>
+            <a style="margin-left:10px;" href="__MODULE_ADMIN__/Bookmanage/bookManage" class="btn btn-primary">所有在售书籍</a>
+            <a href="#" id="searchSalingBook" class="btn btn-primary">查找在售书籍by发布账号</a>
+            <a href="#" id="searchSalingBookByBookName" class="btn btn-primary">查找在售书籍by书名</a>
+
+            <hr>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center">图片</th>
+                        <th class="text-center">id</th>
+                        <th class="text-center">书名</th>
+                        <th class="text-center">类型</th>
+                        <th class="text-center">成色</th>
+                        <th class="text-center">原价/售价</th>
+                        <th class="text-center">操作</th>
+                    </tr>
+                </thead>
+                {volist name="books" id="vo"}
+                <tr>
+                    <td rowspan="2" class="text-center"><img class="book-image" src="__STATIC__/bookImages/{$vo.main_image}" alt=""></td>
+                    <td class="text-center">{$vo.userName}-{$vo.id}</td>
+                    <td class="text-center">{$vo.bookname}</td>
+                    <td class="text-center">{$vo.type}</td>
+                    <td class="text-center">{$vo.degree}</td>
+                    <td class="text-center">{$vo.original_price}/{$vo.now_price}</td>
+                    <td class="text-center">
+                        <a href="#" data="{$vo.id}" userName="{$vo.userName}" class="deleteBook btn btn-primary">删除</a>
+                        <a href="__MODULE_ADMIN__/Bookmanage/updateType?id={$vo.id}&userName={$vo.userName}" class="btn btn-primary">修改类型</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="text-left text-info">详情--{$vo.remarks}</td>
+                </tr>
+                {/volist}
+            </table>
+            <center>
+                <div>{$page}</div>
+            </center>
+            <div style="text-align: right;margin-right:20px;">
+                共{$count}条数据，<span id="allpage"></span>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script>
+        $(
+            function() {
+                //删除书
+                $(".deleteBook").click(function() {
+                    var result = window.confirm("确认删除该书么?");
+                    if (result) {
+                        window.location = "__MODULE_ADMIN__/Bookmanage/deleteBook/?id=" + $(this).attr("data") + "&userName=" + $(this).attr("userName");
+                    }
+                });
+
+                //查找在售书籍--用户名
+                $("#searchSalingBook").click(function() {
+                    var result = window.prompt("请输入你要查询的书的发布账号，否则将不会响应");
+                    if (result != null) {
+                        window.location = "__MODULE_ADMIN__/Bookmanage/searchBookByUserName/?name=" + result;
+                    }
+                });
+
+                //查找在售书籍--书名
+                $("#searchSalingBookByBookName").click(function() {
+                    var result = window.prompt("请输入你要查询的书名，模糊匹配");
+                    if (result != null) {
+                        window.location = "__MODULE_ADMIN__/Bookmanage/searchBookByBookName/?name=" + result;
+                    };
+                })
+
+            }
+        )
+    </script>
+</body>
+
+</html>

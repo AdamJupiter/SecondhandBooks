@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.52,maximum-scale=2.0,user-#scalable=yes">
+    <!--引入BS.JS-->{include file="common/UseBsJs"}
+    <link rel="stylesheet" href="__COMMON__/css/body.css">
+    <link rel="stylesheet" href="__INDEX__/css/textbooks/salebook.css">
+    <link rel="stylesheet" href="__INDEX__/css/textbooks/bootstrap-fileinput.css">
+    <script src="__INDEX__/js/textbooks/bootstrap-fileinput.js"></script>
+
+    <title>CAUC-二手书交易平台</title>
+</head>
+
+<body>
+
+    <!--导航栏-->
+    {include file="common/header"}
+
+    <div class="body">
+        <form role="form" action="__MODULE_INDEX__/Textbooks/addbook" method="POST" class="form-horizontal text-primary" enctype="multipart/form-data">
+            <h2 class="text-center text-primary">我要卖书</h3>
+                <hr>
+                <p style="color:red;">小提示：请售出的书一定及时清理</p>
+                <div class="form-group">
+                    <label for="name" class="col-xs-2">书名</label>
+                    <div class="col-xs-10">
+                        <input type="text" name="书名" required class="form-control" placeholder="请输入书名">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-xs-2">新旧程度</label>
+                    <div class="col-xs-10">
+                        <select name="新旧程度" class="form-control">
+                            {volist name="bookstate" id="vo"}
+                            <option>{$vo.state}</option>
+                            {/volist}
+                      </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-xs-2">原价</label>
+                    <div class="col-xs-10">
+                        <input type="text" name="原价" class="form-control" placeholder="请输入书的原价,可以为空">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-xs-2">售价</label>
+                    <div class="col-xs-10">
+                        <input type="text" required name="售价" class="form-control" placeholder="请输入书的售价">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-xs-2">联系微信</label>
+                    <div class="col-xs-10">
+                        <input type="text" name="微信" class="form-control" placeholder="请输入卖家的联系微信">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-xs-2 text-left">类型</label>
+                    <div class="col-xs-10">
+                        <select id="page-control" name="类型" class="form-control">
+                      <option>课外书</option>
+                      <option>教科书</option>
+                      <option>考研与教辅</option>
+                    </select>
+                    </div>
+                </div>
+                <div id="academy" class="form-group" style="display:none;">
+                    <label for="name" class="col-xs-2">所属学院</label>
+                    <div class="col-xs-10">
+                        <select name="所属学院" class="form-control">
+                          <option></option>
+                          <option>通用</option>
+                          {volist name="academy" id="vo"}
+                          <option>{$vo.name}</option>
+                          {/volist}
+                    </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-xs-2">图片</label>
+                    <div class="fileinput fileinput-new col-xs-10" data-provides="fileinput" id="uploadImageDiv">
+                        <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                            <img src="" alt="" />
+                        </div>
+                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                        <div>
+                            <span class="btn btn-xs btn-default btn-file"> 
+                            <span class="fileinput-new">选择图片</span> <span class="fileinput-exists">更改</span> <input type="file" enctype="multipart/form-data" name="uploadImage" id="uploadImage" /></span>
+                            <span style="margin-left:20px;color:red;">上传的图片大小请不要超过1M</span>
+                            <a class="btn btn-success" href="http://www.gaitubao.com/">修改图片大小</a>
+                        </div>
+                    </div>
+                    <div id="titleImageError" style="color: #a94442"></div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-xs-2">备注</label>
+                    <div class="col-xs-10">
+                        <textarea name="备注" class="form-control" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-5"></div>
+                    <input type="submit" class="btn btn-success" value="提交">
+                    <input type="reset" class="btn btn-danger" value="重置">
+                </div>
+        </form>
+    </div>
+
+    <script>
+        $(function() {
+            $("#page-control").change(function() {
+                if ($("#page-control").val() != "教科书") {
+                    $("#academy").hide();
+                } else {
+                    $("#academy").show();
+                }
+            })
+
+        })
+    </script>
+
+    <!--footer-->
+    {include file="common/footer"}
+
+</body>
+
+</html>

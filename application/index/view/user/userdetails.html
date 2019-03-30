@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.52,maximum-scale=2.0,user-#scalable=yes">
+    <!--引入BS.JS-->{include file="common/UseBsJs"}
+    <link rel="stylesheet" href="__COMMON__/css/body.css">
+    <link rel="stylesheet" href="__INDEX__/css/user/userdetails.css">
+    <title>用户信息</title>
+</head>
+
+<body>
+
+    <!--导航栏-->
+    {include file="common/header"}
+
+    <div class="wrapper">
+        <h2 class="text-center text-primary">用户信息</h2>
+        <hr>
+        <form action="__MODULE_INDEX__/User/changePassword" method="POST">
+            <div class="row">
+                <div class="col-xs-6">
+                    <label for="name" class="col-xs-5">用户名:</label>
+                    <div class="col-xs-7">
+                        <p class="text-primary">{$userDetails.userName}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <label for="name" class="col-xs-5">姓名:</label>
+                    <div class="col-xs-7">
+                        <p class="text-primary">{$userDetails.name}</p>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="name" class="col-xs-5">学号</label>
+                    <div class="col-xs-7">
+                        <p class="text-primary">{$userDetails.studentId}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <label for="name" class="col-xs-5">QQ:</label>
+                    <div class="col-xs-7">
+                        <p class="text-primary">{$userDetails.QQ}</p>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="name" class="col-xs-5">微信:</label>
+                    <div class="col-xs-7">
+                        <p class="text-primary">{$userDetails.weChat}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row change-passwd" style="display:none;">
+                <div class="col-xs-6">
+                    <label for="name" class="col-xs-5">密码:</label>
+                    <div class="col-xs-7">
+                        <input required type="password" name="密码" class="form-control" placeholder="请输入新密码">
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <label for="name" class="col-xs-5">确认密码:</label>
+                    <div class="col-xs-7">
+                        <input required type="password" name="确认密码" class="form-control" placeholder="请输入确认密码">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-5"></div>
+                <input type="submit" class="btn btn-success" value="确认修改" style="display:none;">
+                <a id="passwd-action" href="javascript:void(0);" class="btn btn-primary">修改密码</a>
+                <a id="cancel-change" href="__MODULE_INDEX__/User/userDetails" class="btn btn-danger">取消修改</a>
+                <a href="__MODULE_INDEX__/User/logout" id="logout" class="btn btn-primary logout">注销</a>
+            </div>
+        </form>
+    </div>
+
+    <!--footer-->
+    {include file="common/footer"}
+
+    <script>
+        $(function() {
+            $("#cancel-change").hide();
+
+            $("#passwd-action").click(function() {
+                $("#passwd-action").hide();
+                $(".change-passwd").show();
+                $("input[type=submit]").show();
+                $("#cancel-change").show();
+                $("#logout").hide();
+            });
+
+        })
+    </script>
+</body>
+
+</html>

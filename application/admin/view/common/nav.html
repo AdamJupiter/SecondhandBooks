@@ -1,0 +1,54 @@
+<!-- 导航栏 -->
+<div class="nav clearfix">
+    <div class="nav-top">
+        <div id="mini" style="border-bottom:1px solid rgba(255,255,255,.1)"><img src="__ADMIN__/images/mini.png"></div>
+    </div>
+    <ul>
+        <li class="nav-item">
+            <a href="javascript:;"><span class="glyphicon glyphicon-user"></span><span>用户管理</span><span class="glyphicon glyphicon-chevron-right"></span></a>
+            <ul>
+                <li><a href="__MODULE_ADMIN__/Usermanage/userAudit"><span>用户审核</span></a></li>
+                <li><a href="__MODULE_ADMIN__/Usermanage/userRankManage"><span>用户信息查看和权限管理</span></a></li>
+                <li><a href="__MODULE_ADMIN__/Usermanage/passwordServers"><span>密码服务</span></a></li>
+                <li><a href="__MODULE_ADMIN__/Usermanage/userProhibition"><span>用户封号</span></a></li>
+                <li><a href="__MODULE_ADMIN__/Usermanage/userUnprohibition"><span>用户解封</span></a></li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="javascript:;"><span class="glyphicon glyphicon-book"></span><span>书籍管理</span><span class="glyphicon glyphicon-chevron-right"></span></a>
+            <ul>
+                <li><a href="__MODULE_ADMIN__/Bookmanage/bookAudit"><span>书籍审核</span></a></li>
+                <li><a href="__MODULE_ADMIN__/Bookmanage/bookManage"><span>查看和下架</span></a></li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="javascript:;"><span class="glyphicon glyphicon-magnet"></span><span>其他功能</span><span class="glyphicon glyphicon-chevron-right"></span></a>
+            <ul>
+                <li><a href="javascript:;"><span>发布公告</span></a></li>
+                <li><a href="__MODULE_ADMIN__/Othermanage/academymanage"><span>学院信息维护</span></a></li>
+                <li><a href="__MODULE_ADMIN__/Othermanage/toaddacademy"><span>添加学院</span></a></li>
+                <li><a href="__MODULE_INDEX__"><span>去前台</span></a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<script>
+    $(function() {
+        // nav收缩展开
+        $('.nav-item>a').on('click', function() {
+            if (!$('.nav').hasClass('nav-mini')) {
+                if ($(this).next().css('display') == "none") {
+                    //展开未展开
+                    $('.nav-item').children('ul').slideUp(300);
+                    $(this).next('ul').slideDown(300);
+                    $(this).parent('li').addClass('nav-show').siblings('li').removeClass('nav-show');
+                } else {
+                    //收缩已展开
+                    $(this).next('ul').slideUp(300);
+                    $('.nav-item.nav-show').removeClass('nav-show');
+                }
+            }
+        });
+    });
+</script>
